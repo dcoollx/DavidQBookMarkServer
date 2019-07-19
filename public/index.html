@@ -8,9 +8,28 @@
 </head>
 <body>
   <h1>How to use this API</h1>
+  <h2>main endpoint https://radiant-inlet-94189.herokuapp.com/</h2>
   <section>
-    instructions go here
+    <h2>/bookmarks/</h2>
+    <p><h3>methods</h3><br/>
+      <code>GET</code>
+      <p>returns all bookmarks in the list</p>
+    </p>
+    <p>
+    <code>POST</code>
+    Creates a new book mark, requires a title and a description
+    returns the new item, and where to find it in the location header
+    </p>
   </section>
+  <section>
+      <h2>/bookmarks/id</h2>
+      <p><h3>methods</h3><br/>
+        <code>GET</code>
+      <p>returns the bookmark that has that id in the list</p>
+      <code>DELETE</code>
+      delete book, returns nothing
+      </p>
+    </section>
   
 </body>
 </html>
