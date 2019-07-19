@@ -1,14 +1,18 @@
-const app = require('express')();
+const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 require('dotenv').config();
 
 const {NODE_ENV} = require('./config');
-
+const app = express();
 const morganOptions = 'common';
-
 app.use(helmet());
+
+app.use(cors());
+app.use(morgan(morganOptions));
+app.get('/', express.static('public'),(req,res)=>{
+});
 app.use((err, req, res, next)=>{
   let response;
   if(NODE_ENV === 'production'){
@@ -19,10 +23,4 @@ app.use((err, req, res, next)=>{
   }
   res.status(500).json(response);
 });
-app.use(cors());
-app.use(morgan(morganOptions));
-app.get('/',(req,res)=>{
-  res.status(200).send('Hello World');
-});
-
 module.exports = app;
