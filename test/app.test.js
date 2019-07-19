@@ -7,7 +7,7 @@ describe('requires api key',()=>{
       .expect(200);
   });
   it('returns a 401 if incorect key is provided',()=>{
-    return request(app).get('/bookmark')
+    return request(app).get('/bookmarks')
       .set({'Authorize': 'Bearer pizza'})
       .expect(401);
   });

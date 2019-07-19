@@ -1,8 +1,11 @@
 {
-  "name": "express-boilerplate",
+  "name": "BookMarks",
   "version": "1.0.0",
-  "description": "a template for express servers",
+  "description": "Keep track of your bookmarks",
   "main": "src/server.js",
+  "engines": {
+    "node":"8.9.1"
+  },
   "directories": {
     "test": "test"
   },

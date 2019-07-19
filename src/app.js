@@ -21,13 +21,7 @@ const logger = winston.createLogger({
 
 
 const morganOptions = 'common';
-
-
-app.use(helmet());
-app.use(express.json());
-app.use(cors());
-app.use(morgan(morganOptions));
-app.use(function validateBearerToken(req, res, next) {
+function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN;
   const authToken = req.get('Authorization');
 
@@ -37,18 +31,23 @@ app.use(function validateBearerToken(req, res, next) {
   }
   // move to the next middleware
   next();
-});
+}
+
+app.use(helmet());
+app.use(express.json());
+app.use(cors());
+app.use(morgan(morganOptions));
+
 
 //paths
-app.get('/', express.static('public'),(req,res)=>{
-});
-app.use('/bookmarks',bmRoute);
+app.get('/', express.static('public'));
+app.use('/bookmarks',validateBearerToken,bmRoute);
 
 //erros
 app.use((err, req, res, next)=>{
   let response;
   if(NODE_ENV === 'production'){
-    console.log(err);
+    logger.error(err);
     response = {error:{message:'Critical Server Error'}};
   }else{
     response = {error:{message:err.message,err}};
