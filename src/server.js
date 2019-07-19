@@ -3,6 +3,6 @@ const {PORT} = require('./config');
 
 
 app.listen(PORT,()=>{
-console.log(`Server is listening on port ${PORT}`);
+console.log(`Server is listening on port ${PORT} Apt key is ${process.env.API_TOKEN}`);
 });
 
